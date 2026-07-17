@@ -69,6 +69,41 @@
     mix-blend-mode:overlay;
   }
 
+  /* ---------- preloader ---------- */
+  .preloader{
+    position:fixed;inset:0;z-index:10000;
+    background:var(--black);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:1.5rem;
+    transition:opacity .6s ease, visibility .6s ease;
+  }
+  .preloader.done{opacity:0;visibility:hidden;pointer-events:none;}
+  .preloader-logo{
+    font-family:'Anton', sans-serif;
+    font-size:clamp(1.8rem,5vw,3rem);
+    letter-spacing:0.05em;
+    color:var(--ink);
+    opacity:0;
+    animation:preloaderIn .7s ease forwards;
+  }
+  .preloader-logo span{color:var(--gold);}
+  @keyframes preloaderIn{
+    from{opacity:0;transform:translateY(16px) scale(.97);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+  }
+  .preloader-bar{
+    width:180px;height:2px;border-radius:2px;
+    background:var(--line);
+    overflow:hidden;
+  }
+  .preloader-bar span{
+    display:block;height:100%;width:0%;
+    background:var(--gold);
+    animation:preloaderBar 1s cubic-bezier(.6,0,.2,1) forwards;
+    animation-delay:.2s;
+  }
+  @keyframes preloaderBar{to{width:100%;}}
+
   /* ---------- custom cursor / flash ---------- */
   .flash{
     position:fixed;
@@ -396,7 +431,7 @@
     opacity:0;
     animation:riseIn .9s ease forwards;
     animation-delay:.62s;
-    transition:color .35s ease;
+    transition:color .35s ease, transform .35s cubic-bezier(.2,.8,.2,1);
   }
   .btn-shutter::before{
     content:"";
@@ -471,10 +506,26 @@
     gap:1.5rem;
     margin-bottom:3.5rem;
   }
-  .section-head h2{font-size:clamp(2.2rem,5vw,3.6rem);}
+  .section-head h2{
+    font-size:clamp(2.2rem,5vw,3.6rem);
+    position:relative;
+    display:inline-block;
+  }
+  .section-head h2::after{
+    content:"";
+    position:absolute;left:2px;bottom:-12px;
+    height:3px;width:0;
+    background:var(--gold);
+    transition:width 1s cubic-bezier(.2,.7,.2,1) .15s;
+  }
+  .section-head.in h2::after{width:64px;}
   .section-head .num{
     font-family:'JetBrains Mono', monospace;color:var(--muted);font-size:0.85rem;
+    opacity:0;
+    transform:translateX(-10px);
+    transition:opacity .7s ease .35s, transform .7s ease .35s;
   }
+  .section-head.in .num{opacity:1;transform:translateX(0);}
 
   .reveal{
     opacity:0;
@@ -507,6 +558,7 @@
   .masonry{
     column-count:4;
     column-gap:1.1rem;
+    perspective:1200px;
   }
   @media(max-width:1100px){.masonry{column-count:3;}}
   @media(max-width:720px){.masonry{column-count:2;}}
@@ -522,6 +574,8 @@
     opacity:0;
     transform:translateY(30px) scale(.97);
     transition:opacity .6s ease, transform .6s ease;
+    transform-style:preserve-3d;
+    will-change:transform;
     cursor:pointer;
   }
   .tile.in{opacity:1;transform:translateY(0) scale(1);}
@@ -1262,6 +1316,38 @@
 </footer>
 
 <script>
+  // ---------- preloader ----------
+  const preloader = document.getElementById('preloader');
+  window.addEventListener('load', () => {
+    setTimeout(() => preloader && preloader.classList.add('done'), 850);
+  });
+
+  // ---------- capability flag for pointer-driven effects ----------
+  const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // ---------- hero parallax ----------
+  const heroPhotoImg = document.querySelector('.hero-photo img');
+  if (heroPhotoImg) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      heroPhotoImg.style.transform = `translateY(${y * 0.15}px) scale(1.06)`;
+    }, { passive: true });
+  }
+
+  // ---------- magnetic CTA button ----------
+  const magneticBtn = document.querySelector('.btn-shutter');
+  if (magneticBtn && supportsHover) {
+    magneticBtn.addEventListener('mousemove', (e) => {
+      const rect = magneticBtn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      magneticBtn.style.transform = `translate(${x * 0.18}px, ${y * 0.35}px)`;
+    });
+    magneticBtn.addEventListener('mouseleave', () => {
+      magneticBtn.style.transform = 'translate(0,0)';
+    });
+  }
+
   // ---------- custom cursor ----------
   const flash = document.getElementById('flash');
   const glow = document.getElementById('flashGlow');
@@ -1364,6 +1450,19 @@
           <h4>${item.title}</h4>
         </div>`;
       tile.addEventListener('click', () => openLightbox(i));
+      if (supportsHover) {
+        tile.addEventListener('mousemove', (e) => {
+          const rect = tile.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width - 0.5;
+          const py = (e.clientY - rect.top) / rect.height - 0.5;
+          tile.style.transition = 'transform .15s ease';
+          tile.style.transform = `scale(1.025) rotateX(${(-py * 7).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg)`;
+        });
+        tile.addEventListener('mouseleave', () => {
+          tile.style.transition = '';
+          tile.style.transform = '';
+        });
+      }
       masonry.appendChild(tile);
     });
     // re-trigger reveal animation for new tiles
