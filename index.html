@@ -58,7 +58,6 @@
 
   h1,h2,h3{font-family:'Anton', sans-serif;font-weight:400;letter-spacing:0.01em;}
 
-  /* film grain */
   body::before{
     content:"";
     position:fixed;inset:0;
@@ -69,7 +68,6 @@
     mix-blend-mode:overlay;
   }
 
-  /* ---------- preloader ---------- */
   .preloader{
     position:fixed;inset:0;z-index:10000;
     background:var(--black);
@@ -104,7 +102,6 @@
   }
   @keyframes preloaderBar{to{width:100%;}}
 
-  /* ---------- custom cursor / flash ---------- */
   .flash{
     position:fixed;
     top:0;left:0;
@@ -135,7 +132,6 @@
     .flash,.flash-glow{display:none;}
   }
 
-  /* ---------- flying eagles ---------- */
   .flying-eagles{
     position:fixed;inset:0;
     z-index:3;
@@ -195,7 +191,6 @@
     .eagle{display:none;}
   }
 
-  /* ---------- nav ---------- */
   header{
     position:fixed;top:0;left:0;width:100%;
     z-index:100;
@@ -245,7 +240,6 @@
   .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
   .nav-toggle span{width:24px;height:2px;background:var(--ink);}
 
-  /* ---------- hero ---------- */
   .hero{
     min-height:100vh;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -467,7 +461,6 @@
     100%{transform:scaleY(0);transform-origin:bottom;}
   }
 
-  /* ---------- ticker ---------- */
   .ticker-wrap{
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
@@ -499,7 +492,6 @@
     to{transform:translateX(-50%);}
   }
 
-  /* ---------- section shell ---------- */
   section{padding:8rem 5%;position:relative;}
   .section-head{
     display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;
@@ -534,7 +526,6 @@
   }
   .reveal.in{opacity:1;transform:translateY(0);}
 
-  /* ---------- portfolio / masonry ---------- */
   .filters{
     display:flex;flex-wrap:wrap;gap:0.7rem;
     margin-bottom:2.6rem;
@@ -602,7 +593,6 @@
   }
   .tile-overlay h4{font-family:'Manrope';font-weight:700;font-size:1rem;}
 
-  /* ---------- lightbox ---------- */
   .lightbox{
     position:fixed;inset:0;z-index:1000;
     display:flex;align-items:center;justify-content:center;
@@ -739,7 +729,6 @@
     font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;
   }
 
-  /* ---------- about ---------- */
   .about-grid{
     display:grid;grid-template-columns:1fr 1.15fr;gap:4rem;align-items:center;
   }
@@ -784,7 +773,6 @@
     text-transform:uppercase;margin-top:0.4rem;
   }
 
-  /* ---------- services ---------- */
   .services-grid{
     display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
     background:var(--line);
@@ -806,7 +794,6 @@
   .service h3{font-size:1.5rem;margin:1rem 0 0.7rem;font-family:'Manrope';font-weight:800;}
   .service p{color:var(--muted);font-size:0.92rem;line-height:1.6;}
 
-  /* ---------- statistics ---------- */
   .stats{
     display:grid;grid-template-columns:repeat(4,1fr);
     gap:2rem;
@@ -823,7 +810,6 @@
     color:var(--muted);margin-top:0.6rem;
   }
 
-  /* ---------- contact ---------- */
   .contact-wrap{
     display:grid;grid-template-columns:1fr 1fr;gap:4rem;
   }
@@ -890,7 +876,6 @@
   }
   .form-note.show{opacity:1;}
 
-  /* ---------- footer ---------- */
   footer{
     border-top:1px solid var(--line);
     padding:3rem 5%;
@@ -908,7 +893,6 @@
     width:100%;text-align:center;margin-top:1.4rem;opacity:0.6;
   }
 
-  /* mobile nav */
   @media(max-width:860px){
     nav{position:fixed;top:0;right:0;height:100vh;width:70%;max-width:320px;
       background:var(--panel);transform:translateX(100%);
@@ -920,7 +904,6 @@
     .nav-toggle{display:flex;z-index:101;}
   }
 
-  /* ---------- mobile refinements ---------- */
   @media(max-width:700px){
     section{padding:4.5rem 6%;}
     .section-head{margin-bottom:2.2rem;}
@@ -949,7 +932,6 @@
 <div class="flash-glow" id="flashGlow"></div>
 <div class="flash" id="flash"></div>
 
-<!-- ================= FLYING EAGLES ================= -->
 <div class="flying-eagles" aria-hidden="true">
   <div class="eagle eagle-1">
     <svg viewBox="0 -8 100 36" xmlns="http://www.w3.org/2000/svg">
@@ -1016,7 +998,6 @@
   </div>
 </div>
 
-<!-- ================= HEADER ================= -->
 <header>
   <div class="logo-mark">
     <img src="assets/logo.png" alt="Amazed Studio logo">
@@ -1036,7 +1017,6 @@
   </button>
 </header>
 
-<!-- ================= HERO ================= -->
 <section class="hero" id="home">
   <div class="hero-bg-text">AMAZED</div>
   <div class="hero-photo">
@@ -1044,35 +1024,6 @@
   </div>
   <div class="hero-logo-mark">
     <img src="assets/logo.png" alt="Amazed Studio">
-  </div>
-  <div class="flying-eagles">
-    <div class="eagle eagle-1">
-      <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g class="wingflap">
-          <path d="M50 30 C38 14 18 8 2 12 C16 18 28 24 42 32 C28 30 14 33 3 41 C19 42 36 40 50 30 Z" fill="currentColor"/>
-          <path d="M50 30 C62 14 82 8 98 12 C84 18 72 24 58 32 C72 30 86 33 97 41 C81 42 64 40 50 30 Z" fill="currentColor"/>
-        </g>
-        <ellipse cx="50" cy="31" rx="4.5" ry="7" fill="currentColor"/>
-      </svg>
-    </div>
-    <div class="eagle eagle-2">
-      <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g class="wingflap">
-          <path d="M50 30 C38 14 18 8 2 12 C16 18 28 24 42 32 C28 30 14 33 3 41 C19 42 36 40 50 30 Z" fill="currentColor"/>
-          <path d="M50 30 C62 14 82 8 98 12 C84 18 72 24 58 32 C72 30 86 33 97 41 C81 42 64 40 50 30 Z" fill="currentColor"/>
-        </g>
-        <ellipse cx="50" cy="31" rx="4.5" ry="7" fill="currentColor"/>
-      </svg>
-    </div>
-    <div class="eagle eagle-3">
-      <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g class="wingflap">
-          <path d="M50 30 C38 14 18 8 2 12 C16 18 28 24 42 32 C28 30 14 33 3 41 C19 42 36 40 50 30 Z" fill="currentColor"/>
-          <path d="M50 30 C62 14 82 8 98 12 C84 18 72 24 58 32 C72 30 86 33 97 41 C81 42 64 40 50 30 Z" fill="currentColor"/>
-        </g>
-        <ellipse cx="50" cy="31" rx="4.5" ry="7" fill="currentColor"/>
-      </svg>
-    </div>
   </div>
   <div class="hero-status">
     <span class="dot"></span>
@@ -1104,7 +1055,6 @@
   </div>
 </section>
 
-<!-- ================= TICKER ================= -->
 <div class="ticker-wrap">
   <div class="ticker">
     <span>Brand Identity <em>◆</em> Photography <em>◆</em> Web Design <em>◆</em> Motion <em>◆</em> Content Creation <em>◆</em> Art Direction <em>◆</em></span>
@@ -1112,7 +1062,6 @@
   </div>
 </div>
 
-<!-- ================= PORTFOLIO ================= -->
 <section id="portfolio">
   <div class="section-head reveal">
     <h2>Selected Work</h2>
@@ -1130,7 +1079,6 @@
   <div class="masonry" id="masonry"></div>
 </section>
 
-<!-- ================= LIGHTBOX ================= -->
 <div class="lightbox" id="lightbox">
   <div class="lightbox-inner">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
@@ -1153,7 +1101,6 @@
   </div>
 </div>
 
-<!-- ================= ABOUT ================= -->
 <section id="about">
   <div class="section-head reveal">
     <h2>About</h2>
@@ -1175,7 +1122,6 @@
   </div>
 </section>
 
-<!-- ================= SERVICES ================= -->
 <section id="services">
   <div class="section-head reveal">
     <h2>Services</h2>
@@ -1205,7 +1151,6 @@
   </div>
 </section>
 
-<!-- ================= STATISTICS ================= -->
 <section id="stats">
   <div class="section-head reveal">
     <h2>By The Numbers</h2>
@@ -1231,7 +1176,6 @@
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
 <section id="contact">
   <div class="contact-wrap">
     <div class="contact-info reveal">
@@ -1302,7 +1246,6 @@
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer>
   <div class="logo-text">Amazed <span style="color:var(--gold)">Studio</span></div>
   <div class="foot-links">
@@ -1316,16 +1259,13 @@
 </footer>
 
 <script>
-  // ---------- preloader ----------
   const preloader = document.getElementById('preloader');
   window.addEventListener('load', () => {
     setTimeout(() => preloader && preloader.classList.add('done'), 850);
   });
 
-  // ---------- capability flag for pointer-driven effects ----------
   const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  // ---------- hero parallax ----------
   const heroPhotoImg = document.querySelector('.hero-photo img');
   if (heroPhotoImg) {
     window.addEventListener('scroll', () => {
@@ -1334,7 +1274,6 @@
     }, { passive: true });
   }
 
-  // ---------- magnetic CTA button ----------
   const magneticBtn = document.querySelector('.btn-shutter');
   if (magneticBtn && supportsHover) {
     magneticBtn.addEventListener('mousemove', (e) => {
@@ -1348,7 +1287,6 @@
     });
   }
 
-  // ---------- custom cursor ----------
   const flash = document.getElementById('flash');
   const glow = document.getElementById('flashGlow');
   window.addEventListener('mousemove', e => {
@@ -1362,13 +1300,11 @@
     el.addEventListener('mouseleave', () => flash.classList.remove('active'));
   });
 
-  // ---------- mobile nav ----------
   const navToggle = document.getElementById('navToggle');
   const siteNav = document.getElementById('siteNav');
   navToggle.addEventListener('click', () => siteNav.classList.toggle('open'));
   siteNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => siteNav.classList.remove('open')));
 
-  // ---------- active nav link on scroll ----------
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('nav a');
   window.addEventListener('scroll', () => {
@@ -1381,7 +1317,6 @@
     });
   });
 
-  // ---------- reveal on scroll ----------
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('in');
@@ -1389,7 +1324,6 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // ---------- masonry gallery ----------
   // WORK_IMAGES_MAP
   const galleryData = [
     { file: 'SHE_AWARDS.jpg', cat: 'event', tag: 'Event Graphics', title: 'SHE Awards 2026' },
@@ -1414,12 +1348,12 @@
     { file: 'MU02.jpg', cat: 'event', tag: 'Event Graphics', title: 'Mr & Miss UTAS — Empress' },
     { file: 'Dorcas.jpg', cat: 'campaign', tag: 'Campaign Design', title: 'Dorcas Anabila Ayinenomah — NSA WOCOM Hopeful' },
     { file: 'Grand_Finale_UTAS_SHE.jpg', cat: 'event', tag: 'Event Poster', title: 'Grand Finale 26 — Mr & Miss UTAS / SHE Awards' },
-    { file: 'Hakeem_26.jpg', cat: 'campaign', tag: 'Campaign Design', title: 'Abdul Hakeem Alhassan — GRASAG Chief Justice' }
+    { file: 'Hakeem_26.jpg', cat: 'campaign', tag: 'Campaign Design', title: 'Abdul Hakeem Alhassan — GRASAG Chief Justice' },
+    { file: 'Seidu_Congratulations.jpg', cat: 'campaign', tag: 'Campaign Design', title: 'Seidu Abubakari — SRC Treasurer Elect' }
   ];
 
   const masonry = document.getElementById('masonry');
 
-  // track the currently rendered/filtered list so the lightbox can navigate it
   let currentGallery = galleryData.slice();
 
   function shuffleArray(arr) {
@@ -1465,7 +1399,6 @@
       }
       masonry.appendChild(tile);
     });
-    // re-trigger reveal animation for new tiles
     requestAnimationFrame(() => {
       const tileObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1488,7 +1421,6 @@
     });
   });
 
-  // ---------- lightbox ----------
   const lightbox = document.getElementById('lightbox');
   const lightboxFigure = document.getElementById('lightboxFigure');
   const lightboxImg = document.getElementById('lightboxImg');
@@ -1504,7 +1436,6 @@
   const zoomLevelLabel = document.getElementById('zoomLevel');
   let currentIndex = 0;
 
-  // ---- zoom/pan state ----
   const ZOOM_MIN = 1;
   const ZOOM_MAX = 5;
   const ZOOM_STEP = 0.5;
@@ -1705,7 +1636,6 @@
     if (e.key === '0') resetZoom();
   });
 
-  // ---------- stat counters ----------
   const statEls = document.querySelectorAll('[data-count]');
   const statObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1730,7 +1660,6 @@
     requestAnimationFrame(step);
   }
 
-  // ---------- contact form (Formspree) ----------
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/FORM_ID';
 
   const form = document.getElementById('contactForm');
